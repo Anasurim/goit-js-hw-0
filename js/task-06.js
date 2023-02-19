@@ -12,31 +12,19 @@ const inputAttribute = validationInputRef.dataset.length;
 
 blur();
 
-validationInputRef.addEventListener("blur", () => {
-  validationInputRef.addEventListener("input", (event) => {
-    const inputLength = event.currentTarget.value.length;
-    if (Number(inputAttribute) > inputLength) {
-      addClassByInvalidInput();
-    } else if (Number(inputAttribute) <= inputLength) {
-      addClassByValidInput();
-    }
-  });
-});
-
 function addClassByInvalidInput() {
-  validationInputRef.classList.remove("valid");
   validationInputRef.classList.add("invalid");
+  validationInputRef.classList.remove("valid");
 }
 
 function addClassByValidInput() {
-  validationInputRef.classList.remove("invalid");
   validationInputRef.classList.add("valid");
+  validationInputRef.classList.remove("invalid");
 }
 
-//doesnot work, didnot find solution
-
-// validationInputRef.addEventListener("blur", () => {
-//   Number(inputAttribute) >= validationInputRef.textContent.length
-//     ? addClassByInvalidInput()
-//     : addClassByValidInput();
-// });
+validationInputRef.addEventListener("blur", (event) => {
+  const inputValue = event.currentTarget.value.length;
+  Number(inputAttribute) === inputValue
+    ? addClassByValidInput()
+    : addClassByInvalidInput();
+});
