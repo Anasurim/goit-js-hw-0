@@ -9,22 +9,34 @@
 
 const validationInputRef = document.querySelector("#validation-input");
 const inputAttribute = validationInputRef.dataset.length;
-console.log(Number(inputAttribute));
 
-// validationInputRef.addEventListener("input", (event) => {
-//   if (event.currentTarget.value.length > inputAttribute) {
-//     validInput();
-//   }
-//   invalidInput();
-// });
-validInput();
+blur();
 
-function validInput() {
-  validationInputRef.addEventListener("blur", () => {
-    validationInputRef.addEventListener("input", (event) => {
-      if (event.currentTarget.value.length <= Number(inputAttribute)) {
-        validationInputRef.classList.add("invalid");
-      }
-    });
+validationInputRef.addEventListener("blur", () => {
+  validationInputRef.addEventListener("input", (event) => {
+    const inputLength = event.currentTarget.value.length;
+    if (Number(inputAttribute) > inputLength) {
+      addClassByInvalidInput();
+    } else if (Number(inputAttribute) <= inputLength) {
+      addClassByValidInput();
+    }
   });
+});
+
+function addClassByInvalidInput() {
+  validationInputRef.classList.remove("valid");
+  validationInputRef.classList.add("invalid");
 }
+
+function addClassByValidInput() {
+  validationInputRef.classList.remove("invalid");
+  validationInputRef.classList.add("valid");
+}
+
+//doesnot work, didnot find solution
+
+// validationInputRef.addEventListener("blur", () => {
+//   Number(inputAttribute) >= validationInputRef.textContent.length
+//     ? addClassByInvalidInput()
+//     : addClassByValidInput();
+// });
