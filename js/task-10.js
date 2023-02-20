@@ -25,19 +25,30 @@ function createBoxes(amount) {
     amount = event.currentTarget.value;
 
     createBtnRef.addEventListener("click", () => {
-      const boxMarkup = `<div style="width: 30px; height: 30px;" class="box_item"></div>`;
+      const boxMarkup = `<div  class="box_item"></div>`;
       const multiDivMarkup = boxMarkup.repeat(amount);
 
       divBoxRef.insertAdjacentHTML("afterbegin", multiDivMarkup);
-      const boxRef = document.querySelectorAll(".box_item");
-      console.log(boxRef);
-      boxRef.forEach((box) => {
+      const boxesRef = document.querySelectorAll(".box_item");
+
+      boxesRef.forEach((box) => {
         box.style.backgroundColor = getRandomHexColor();
       });
+
+      let width = 30;
+      let height = 30;
+      for (let index = 0; index < boxesRef.length; index += 1) {
+        const box = boxesRef[index];
+        width += 10;
+        height += 10;
+        box.style.width = `${width}px`;
+        box.style.height = `${height}px`;
+      }
     });
   });
 }
 
 destroyBtnRef.addEventListener("click", () => {
   divBoxRef.innerHTML = "";
+  inputRef.value = "";
 });
