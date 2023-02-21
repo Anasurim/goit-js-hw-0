@@ -6,6 +6,8 @@
 const inputRange = document.querySelector("#font-size-control");
 const textRef = document.querySelector("#text");
 
-inputRange.addEventListener("change", () => {
+textRef.style.fontSize = "24px";
+
+inputRange.addEventListener("input", () => {
   textRef.style.fontSize = inputRange.value + "px";
 });
