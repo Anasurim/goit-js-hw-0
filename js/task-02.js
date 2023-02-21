@@ -13,12 +13,13 @@ const ingredients = [
 // Додасть назву інгредієнта як його текстовий вміст.
 // Додасть елементу клас item.
 // Після чого, вставить усі <li> за одну операцію у список ul#ingredients.
+const listRef = document.querySelector("ul");
 
-ingredients.map((ingredient) => {
+const listItems = ingredients.map((ingredient) => {
   const listItem = document.createElement("li");
   listItem.classList.add("item");
   listItem.textContent = ingredient;
-
-  const listRef = document.querySelector("ul");
-  listRef.appendChild(listItem);
+  return listItem;
 });
+
+listRef.append(...listItems);
