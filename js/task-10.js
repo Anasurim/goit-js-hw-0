@@ -27,8 +27,9 @@ function createBoxes(amount) {
     createBtnRef.addEventListener("click", () => {
       const boxMarkup = `<div  class="box_item"></div>`;
       const multiDivMarkup = boxMarkup.repeat(amount);
-
+      console.log(multiDivMarkup);
       divBoxRef.insertAdjacentHTML("afterbegin", multiDivMarkup);
+
       const boxesRef = document.querySelectorAll(".box_item");
 
       boxesRef.forEach((box) => {
@@ -50,5 +51,5 @@ function createBoxes(amount) {
 
 destroyBtnRef.addEventListener("click", () => {
   divBoxRef.innerHTML = "";
-  inputRef.value = "";
+  inputRef.value = 0;
 });
